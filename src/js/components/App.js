@@ -9,7 +9,7 @@ import Add from './Add';
 
 @connect((store) => {
 	return {
-		countries: store.countries
+		countries: store.countries.countries
 	};
 })
 
@@ -44,7 +44,7 @@ export default class App extends React.Component {
 		if (countries) {
 			return <div class="container">
 				<div class="row">
-					<List data={countries.countries} callback={this.clicked.bind(this)} />
+					<List data={countries} callback={this.clicked.bind(this)} />
 					<Description country={this.state.country} />
 					<Add dispatch={this.props.dispatch} />
 				</div>
