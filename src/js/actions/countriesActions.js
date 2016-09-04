@@ -1,8 +1,7 @@
 export function fetchCountries () {
   return {
     type: "FETCH_COUNTRIES_FULFILLED",
-    payload: {
-      countries: [{
+    payload: [{
 				id: +new Date() + Math.random(),
 				name: 'Russia123',
 				capital: 'Moscow',
@@ -19,6 +18,12 @@ export function fetchCountries () {
 				location: 'South America'
 			}
 		]
-    }
-  }
+  };
+}
+
+export function addCountry (country) {
+  return {
+    type: "COUNTRY_ADD",
+    payload: country
+  };
 }

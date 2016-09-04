@@ -1,8 +1,5 @@
 const initialState = {
-	countries: [],
-	fetching: false,
-    fetched: false,
-    error: null
+	countries: []
 };
 
 export default function reducer (state = initialState, action) {
@@ -10,10 +7,17 @@ export default function reducer (state = initialState, action) {
 		case 'FETCH_COUNTRIES_FULFILLED': {
 		  return {
 		          ...state,
-		          fetching: false,
-		          fetched: true,
 		          countries: action.payload,
-		        }
+		    };
+		}
+
+		case 'COUNTRY_ADD': {
+			let withNew = state.countries.concat(action.payload);
+
+			return {
+		          ...state,
+		          countries: withNew,
+		    };
 		}
     }
 
