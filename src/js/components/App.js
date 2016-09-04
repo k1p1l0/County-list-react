@@ -1,9 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { connect } from 'react-redux';
+import { fetchCountries } from '../actions/countriesActions';
 
 import List from './List';
 import Description from './Description';
 import Add from './Add';
+
+@connect((store) => {
+	return {
+		countries: store.countries.countries
+	};
+})
 
 export default class App extends React.Component {
 	constructor () {
@@ -18,19 +26,33 @@ export default class App extends React.Component {
 		};
 	}
 
+	componentWillMount () {
+		this.props.dispatch(fetchCountries());
+	}
+
 	clicked (country) {
 		this.setState({country});
 
 		this.forceUpdate();
 	}
 
-	render () {		
-		return <div class="container">
-			<div class="row">
-				<List data={this.props.data} callback={this.clicked.bind(this)} />
-				<Description country={this.state.country} />
-				<Add />
+	loadCountries () {
+		this.props.dispatch(fetchCountries());
+	}
+
+	render () {
+		const { countries } = this.props;
+
+		if (countries.countries) {
+			return <div class="container">
+				<div class="row">
+					<List data={countries.countries} callback={this.clicked.bind(this)} />
+					<Description country={this.state.country} />
+					<Add />
+				</div>
 			</div>
-		</div>
+		}
+
+		return <span>Loaded....</span>;
 	}
 }

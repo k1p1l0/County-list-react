@@ -5,7 +5,7 @@ export default class List extends React.Component {
 		this.props.callback(country);
 	}
 
-	render () {		
+	render () {				
 		var lis = this.props.data.map(function (country) {
 			return (
 				<li key={country.id}>
