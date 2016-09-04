@@ -32,8 +32,6 @@ export default class App extends React.Component {
 
 	clicked (country) {
 		this.setState({country});
-
-		this.forceUpdate();
 	}
 
 	loadCountries () {

@@ -1,4 +1,4 @@
-const initialState = {
+  const initialState = {
 	countries: []
 };
 
@@ -12,11 +12,9 @@ export default function reducer (state = initialState, action) {
 		}
 
 		case 'COUNTRY_ADD': {
-			let withNew = state.countries.concat(action.payload);
-
 			return {
 		          ...state,
-		          countries: withNew,
+		          countries: [...state.countries, action.payload],
 		    };
 		}
     }
